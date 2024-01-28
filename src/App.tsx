@@ -9,11 +9,14 @@ import clsx from "clsx";
 
 export default function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+ 
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
     console.log("Sidebar button toggled!");
   };
+
+  
 
   return (
     <Router>
@@ -39,3 +42,4 @@ export default function App() {
     </Router>
   );
 }
+
