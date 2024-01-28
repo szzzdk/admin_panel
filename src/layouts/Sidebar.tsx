@@ -16,9 +16,6 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
   const { t, i18n } = useTranslation();
 
-  const handleLanguageChange = (lng: string) => {
-    i18n.changeLanguage(lng);
-  };
 
   const routes = [
     {
@@ -66,12 +63,12 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
   return (
     <motion.div
       initial={false}
-      // animate={{ x: isSidebarOpen ? "0" : "100%" }}
+      // animate={{ x: isSidebarOpen ? "0" : "-100%" }}
       transition={{ duration: 0.3 }}
-      className="fixed top-0 left-0 h-full bg-white z-50 overflow-hidden"
+      className="fixed top-0 left-0 bg-white z-50 overflow-hidden"
     >
       <section>
-        <div className="flex">
+        <div className="flex items-center p-5 border">
           <a href="/">
             {isSidebarOpen ? (
               <div className="flex items-center">
@@ -83,17 +80,26 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
             )}
           </a>
         </div>
-        {routes.map((route) => (
-          <NavLink to={route.path} key={route.name}>
-            {isSidebarOpen ? (
-              <span className="flex items-center">
-                {route.icon} {route.name}
-              </span>
-            ) : (
-              <span>{route.icon}</span>
-            )}
-          </NavLink>
-        ))}
+        <div className="border ">
+          {routes.map((route) => (
+            <NavLink to={route.path} key={route.name}>
+              {isSidebarOpen ? (
+                <motion.span className="flex items-center pl-7 ml-7 mb-7"
+                animate={{ opacity: 1, marginLeft: 0 }}
+                initial={{ opacity: 0, marginLeft: -20 }}
+                transition={{ duration: 0.3 }}>
+                  {route.icon} <span className="ml-2">{route.name}</span> 
+                </motion.span>
+              ) : (
+                <motion.span className="flex items-center ml-7 mb-7"
+                animate={{ opacity: 1 }}
+                initial={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}>{route.icon}</motion.span>
+              )}
+            </NavLink>
+          ))}
+        </div>
+        
       </section>
     </motion.div>
   );

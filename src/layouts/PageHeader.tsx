@@ -19,10 +19,10 @@ i18n
     resources: {
       Английский: { translation: translationEN },
       Казахский: { translation: translationKZ },
-      Русский: { translation: translationRU },
+      Русский: { translation: translationRU },  
     },
-    lng: 'ru',
-    fallbackLng: 'ru',
+    lng: 'Русский', // Устанавливаем русский язык по умолчанию
+    fallbackLng: 'Русский', // Устанавливаем русский язык по умолчанию
   });
 
 
@@ -49,15 +49,15 @@ const PageHeader: React.FC<PageHeaderProps> = ({ onToggleSidebar }) => {
   }
 
   useEffect(() => {
-    i18n.changeLanguage('ru');
+    i18n.changeLanguage('Русский'); // Изменяем язык на русский при монтировании компонента
   }, [])
 
   
   return (
-    <div className="flex gap-20 lg:gap-20 w-full">
+    <div className="flex gap-20 lg:gap-20 ">
       <button onClick={onToggleSidebar}>Toggle Sidebar</button>
       <div className="flex gap-4 justify-center">
-        <div className="flex flex-grow max-w-[600px] relative">
+        <div className="flex flex-grow relative">
           <input
             type="search"
             placeholder="Search for results..."
@@ -70,14 +70,14 @@ const PageHeader: React.FC<PageHeaderProps> = ({ onToggleSidebar }) => {
           </Button>
         </div>
       </div>
-      <div>
+      <div >
         <button onClick={toggleLanguageMenu} className={styles.languageButton}>
           {selectedLanguage} {isLanguageMenuOpen ? '▲' : '▼'}
         </button>
         {
           isLanguageMenuOpen && (
             <div className="flex flex-col items-center justify-center absolute mt-2 bg-white border">
-              <button onClick={() => handleLanguageChange('Русский')} className='py-2 px-4 w-full'>Русский</button>
+              <button onClick={() => handleLanguageChange('Русский')}>Русский</button>
               <button onClick={() => handleLanguageChange('Казахский')}>Казахский</button>
               <button onClick={() => handleLanguageChange('Английский')}>Английский</button>
             </div>
