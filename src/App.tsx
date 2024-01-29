@@ -19,8 +19,6 @@ export default function App() {
     <Router>
       <div className="flex">
         <motion.div
-          className={`w-1/4`}
-          animate={{ marginLeft: isSidebarOpen ? "-5.66667%" : "-10.66667%" }}
           transition={{ duration: 0.3 }}
         >
           <Sidebar isSidebarOpen={isSidebarOpen} />

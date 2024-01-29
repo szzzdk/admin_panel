@@ -54,7 +54,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ onToggleSidebar }) => {
 
   
   return (
-    <div className="flex gap-20 lg:gap-20 ">
+    <div className="flex">
       <button onClick={onToggleSidebar}>Toggle Sidebar</button>
       <div className="flex gap-4 justify-center">
         <div className="flex flex-grow relative">
