@@ -9,6 +9,7 @@ import i18n from "i18next";
 import translationRU from "../locales/ru.json";
 import translationKZ from "../locales/kz.json";
 import translationEN from "../locales/en.json";
+import { motion } from "framer-motion";
 
 interface PageHeaderProps {
   onToggleSidebar: () => void;
@@ -22,7 +23,7 @@ i18n.use(initReactI18next).init({
     Русский: { translation: translationRU },
   },
   lng: "Русский", // Устанавливаем русский язык по умолчанию
-  fallbackLng: "Русский", // Устанавливаем русский язык по умолчанию
+  fallbackLng: "Русский", 
 });
 
 const PageHeader: React.FC<PageHeaderProps> = ({
@@ -50,56 +51,63 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   };
 
   useEffect(() => {
-    i18n.changeLanguage("Русский"); // Изменяем язык на русский при монтировании компонента
+    i18n.changeLanguage("Русский"); 
   }, []);
 
   return (
-    <div className="flex border " >
+    <div className="flex border ">
       <div className="flex items-center border border-b-0 border-l-0 border-t-0">
         <a href="/">
           <div className="flex items-center">
             {isSidebarOpen ? (
-              <div
-                className="flex items-center ml-5"
-                style={{
-                  paddingRight: "219px",
-                  paddingTop: "20px",
-                  paddingBottom: "20px",
-                }}
+              <motion.span
+                className="flex items-center ml-6"
+                animate={{ opacity: 1, marginRight: 140 }}
+                initial={{ opacity: 0, marginRight: 100 }}
+                transition={{ duration: 0.3 }}
               >
-                <LiaToothSolid className="h-10 w-10 icon" />
+                <LiaToothSolid className={`h-10 w-10 ${styles.icon}`} />
                 <p className="ml-2 title">Tooth</p>
-              </div>
+              </motion.span>
             ) : (
-              <div style={{padding: "14px"}}>
-                <LiaToothSolid className="h-10 w-10 icon" />
-              </div>
+              <motion.span 
+                className="ml-5"
+                animate={{ opacity: 1, marginRight: 19 }}
+                initial={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}>
+                <LiaToothSolid className={`h-10 w-10 ${styles.icon}`} />
+              </motion.span>
             )}
           </div>
         </a>
       </div>
-      <FaBars onClick={onToggleSidebar} className="cursor-pointer" style={{ marginTop: "30px" }} />
-      <div className="flex gap-4 justify-center">
+      <FaBars 
+        onClick={onToggleSidebar} 
+        className={`cursor-pointer ${styles.icon}`} 
+        style={{ marginTop: "35px", marginLeft: "30px" }} 
+      />
+      <div className="flex gap-4 justify-center" style={{ marginTop: "5px", marginBottom: "20px", marginLeft: "30px"}}>
         <div className="flex flex-grow relative">
           <input
             type="search"
             placeholder="Search for results..."
             onChange={handleSearchChange}
             className="rounded-lg border border-secondary-border
-                       shadow-inner shadow-secondary py-1 text-lg pl-6 pr-12"
-            style={{ height: "2.5rem", marginTop: "15px"}}
+                       shadow-inner shadow-secondary py-1 text-lg
+                       pl-6 pr-12 text-sm"
+            style={{ height: "2.5rem", width: "25rem", marginTop: "15px"}}
           />
-          <Button className="absolute right-0 top-0 mt-3 mr-1" style={{marginTop: "30px"}}>
+          <Button className="absolute right-0 top-0 mt-3 mr-1" style={{marginTop: "30px", marginBottom: "30px"}}>
             <CiSearch />
           </Button>
         </div>
       </div>
       <div>
-        <button onClick={toggleLanguageMenu} className={styles.languageButton} style={{ marginTop: "20px"}}>
+        <button onClick={toggleLanguageMenu} className={styles.languageButton} style={{ marginTop: "30px", marginBottom: "20px", marginLeft: "300px"}}>
           {selectedLanguage} {isLanguageMenuOpen ? "▲" : "▼"}
         </button>
         {isLanguageMenuOpen && (
-          <div className="flex flex-col items-center justify-center absolute mt-2 bg-white border">
+          <div className="flex flex-col items-center justify-center absolute mt-2 bg-white border" style={{ marginLeft: "285px"}}>
             <button onClick={() => handleLanguageChange("Русский")}>
               Русский
             </button>

@@ -19,42 +19,42 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
     {
       path: "/",
       name: t("records"),
-      icon: <FaAddressBook />,
+      icon: <FaAddressBook className={styles.icon} />,
     },
     {
       path: "/",
       name: t("patients"),
-      icon: <FaUser />,
+      icon: <FaUser className={styles.icon} />,
     },
     {
       path: "",
       name: t("finance"),
-      icon: <FaMoneyBill />,
+      icon: <FaMoneyBill className={styles.icon} />,
     },
     {
       path: "",
       name: t("x-ray"),
-      icon: <FaXRay />,
+      icon: <FaXRay className={styles.icon} />,
     },
     {
       path: "",
       name: t("reports"),
-      icon: <LuFileText />,
+      icon: <LuFileText className={styles.icon} />,
     },
     {
       path: "",
       name: t("feedback"),
-      icon: <MdFeedback />,
+      icon: <MdFeedback className={styles.icon} />,
     },
     {
       path: "",
       name: t("integration"),
-      icon: <FaGears />,
+      icon: <FaGears className={styles.icon} />,
     },
     {
       path: "",
       name: t("inventory"),
-      icon: <MdInventory />,
+      icon: <MdInventory className={styles.icon} />,
     },
   ];
 
@@ -62,25 +62,25 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
     <motion.div
       initial={false}
       transition={{ duration: 0.3 }}
-      className="border"
+      className="border border-t-0"
     >
       <section className={styles.section}>
-        <div className="border border-r-0 border-b-0 border-t-0">
+        <div className="pt-5 border border-r-0 border-b-0 border-t-0">
           {routes.map((route) => (
             <NavLink to={route.path} key={route.name}>
               {isSidebarOpen ? (
                 <motion.span
-                  className="flex items-center pl-7 ml-8 mt-7 pr-40"
-                  animate={{ opacity: 1, marginLeft: 0 }}
-                  initial={{ opacity: 0, marginLeft: -20 }}
+                  className="flex items-center h-10 pl-9"
+                  animate={{ opacity: 1, marginRight: 77  }}
+                  initial={{ opacity: 0, marginRight: 100 }}
                   transition={{ duration: 0.3 }}
                 >
                   {route.icon} <span className="ml-2">{route.name}</span>
                 </motion.span>
               ) : (
                 <motion.span
-                  className="flex items-center ml-8 mt-7 pr-5"
-                  animate={{ opacity: 1 }}
+                  className="flex items-center h-10 pl-8"
+                  animate={{ opacity: 1, marginRight: 30 }}
                   initial={{ opacity: 0 }}
                   transition={{ duration: 0.3 }}
                 >
