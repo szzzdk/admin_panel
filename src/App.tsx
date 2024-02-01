@@ -17,12 +17,7 @@ export default function App() {
 
   return (
     <Router>
-      <div className="flex">
-        <motion.div
-          transition={{ duration: 0.3 }}
-        >
-          <Sidebar isSidebarOpen={isSidebarOpen} />
-        </motion.div>
+      <div className="flex flex-col">
         <div className="flex flex-col">
           <div
             className={clsx("content", {
@@ -34,8 +29,16 @@ export default function App() {
               isSidebarOpen={isSidebarOpen}
             />
           </div>
+        </div>
+        <div className="flex">
+          <motion.div
+            transition={{ duration: 0.3 }}
+          >
+            <Sidebar isSidebarOpen={isSidebarOpen} />
+          </motion.div>
           <Main />
         </div>
+        
       </div>
     </Router>
   );
