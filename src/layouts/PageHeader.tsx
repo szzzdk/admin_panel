@@ -5,6 +5,7 @@ import Button from "../components/Button";
 import { useTranslation, initReactI18next } from "react-i18next";
 import { LiaToothSolid } from "react-icons/lia";
 import { FaBars } from "react-icons/fa";
+import { CgShapeRhombus } from "react-icons/cg";
 import i18n from "i18next";
 import translationRU from "../locales/ru.json";
 import translationKZ from "../locales/kz.json";
@@ -55,7 +56,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   }, []);
 
   return (
-    <div className="flex border ">
+    <div className="flex border">
       <div className="flex items-center border border-b-0 border-l-0 border-t-0">
         <a href="/">
           <div className="flex items-center">
@@ -83,10 +84,9 @@ const PageHeader: React.FC<PageHeaderProps> = ({
       </div>
       <FaBars 
         onClick={onToggleSidebar} 
-        className={`cursor-pointer ${styles.icon}`} 
-        style={{ marginTop: "35px", marginLeft: "30px" }} 
+        className={`cursor-pointer mt-9 ml-8 ${styles.icon}`} 
       />
-      <div className="flex gap-4 justify-center" style={{ marginTop: "5px", marginBottom: "20px", marginLeft: "30px"}}>
+      <div className="flex gap-4 justify-center mt-1 mb-5 ml-8">
         <div className="flex flex-grow relative">
           <input
             type="search"
@@ -94,20 +94,20 @@ const PageHeader: React.FC<PageHeaderProps> = ({
             onChange={handleSearchChange}
             className="rounded-lg border border-secondary-border
                        shadow-inner shadow-secondary py-1 text-lg
-                       pl-6 pr-12 text-sm"
-            style={{ height: "2.5rem", width: "25rem", marginTop: "15px"}}
+                       pl-6 pr-12 text-sm h-10 w-96 mt-4"
           />
-          <Button className="absolute right-0 top-0 mt-3 mr-1" style={{marginTop: "30px", marginBottom: "30px"}}>
+          <Button className="absolute right-0 top-0 my-7">
             <CiSearch />
           </Button>
         </div>
       </div>
       <div>
-        <button onClick={toggleLanguageMenu} className={styles.languageButton} style={{ marginTop: "30px", marginBottom: "20px", marginLeft: "300px"}}>
+        <button onClick={toggleLanguageMenu} className={styles.languageButton}>
           {selectedLanguage} {isLanguageMenuOpen ? "▲" : "▼"}
         </button>
         {isLanguageMenuOpen && (
-          <div className="flex flex-col items-center justify-center absolute mt-2 bg-white border" style={{ marginLeft: "285px"}}>
+          <div className={styles.languageMenuContainer} >
+            <div className={styles.diamond}></div>
             <button onClick={() => handleLanguageChange("Русский")}>
               Русский
             </button>

@@ -70,8 +70,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
             <NavLink to={route.path} key={route.name}>
               {isSidebarOpen ? (
                 <motion.span
-                  className="flex items-center h-10 pl-9"
-                  animate={{ opacity: 1, marginRight: 77  }}
+                  className={ styles.sidebarItemStylesOpen}
+                  animate={{ opacity: 1, marginRight: 2  }}
                   initial={{ opacity: 0, marginRight: 100 }}
                   transition={{ duration: 0.3 }}
                 >
