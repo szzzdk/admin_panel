@@ -64,7 +64,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
       transition={{ duration: 0.3 }}
       className="border border-t-0"
     >
-      <section className={styles.section}>
+      <section className="h-screen">
         <div className="pt-5 border border-r-0 border-b-0 border-t-0">
           {routes.map((route) => (
             <NavLink to={route.path} key={route.name}>

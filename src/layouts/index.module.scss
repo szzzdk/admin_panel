@@ -1,24 +1,8 @@
-
-.languageButton {
-    background-color: lighten(#9370DB, 10%);
-    font-size: 14px;
-    padding: 10px;
-    margin-top: 30px;
-    margin-bottom: 20px;
-    margin-left: 300px;
-}   
-
-.sidebar {
-    min-height: 100%;
-}
-
-.section {
-    height: 100vh;
-}
-
 .icon {
-    color: #9370DB; /* Цвет фиолетовый */
+    color: #8e6cd3; /* Цвет фиолетовый */
+    cursor:pointer
 }
+
 
 .sidebarItemStylesOpen {
     display: flex;
@@ -28,9 +12,28 @@
     padding-left: 30px;
 }
 
-.iconRhomb {
-    color: lightgray;
-    font-size: 15px; 
+.diamond {
+    position: relative;
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    top: -26px;
+    left: 27px;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+  }
+  
+  &:before {
+    border-bottom-color: #9370DB; /* Верхняя граница ромба */
+  }
+  
+  &:after {
+    border-top-color: #9370DB; /* Нижняя граница ромба */
+    transform: rotate(180deg);
+  }
 }
 
 .languageMenuContainer {
@@ -39,7 +42,13 @@
     align-items: center;
     justify-content: center;
     position: absolute;
-    margin-top: 1px;
-    background-color: lighten(#9370DB, 10%);
-    margin-left: 285px;
+    background-color: #9370DB; /* Цвет фона меню */
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень для меню */
+    padding: 10px;
+    color: white; /* Цвет текста белый для хорошей контрастности */
+    top: 66px;
+    right: 341px;
+    font-size: 14px;
 }
+
