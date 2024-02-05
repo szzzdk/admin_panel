@@ -81,8 +81,8 @@ const PageHeader: React.FC<PageHeaderProps> = ({ onToggleSidebar, isSidebarOpen 
             type="search"
             placeholder="Search for results..."
             onChange={handleSearchChange}
-            className="h-10 xs:w-20 sm:w-36 md:w-60 lg:w-80 xl:w-96 2xl:w-112 rounded-lg border 
-                       py-1 text-lg pl-6 pr-12 text-sm mt-4 "
+            className="h-10 lg:w-80 xl:w-96 2xl:w-112 rounded-lg border 
+            py-1 text-lg pl-6 pr-12 text-sm mt-4 lg:block md:hidden"
           />
         </div>
       </div>

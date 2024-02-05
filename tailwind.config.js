@@ -10,12 +10,10 @@ export default {
         myCustomColor: '#9370DB',
       }
     },
-    // screens: {
-    //   'xs': '640px',
-    //   // => @media (min-width: 640px) { ... }
+    screens: {
+      'xs': '480px',
 
-    
-    // }
+    }
   },
   plugins: [],
 }
