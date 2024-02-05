@@ -74,7 +74,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ onToggleSidebar, isSidebarOpen 
       />
       <div className="flex gap-4 justify-center mt-1 mb-5 ml-8">
         <div className="flex relative">
-          <Button className="absolute top-7 right-3">
+          <Button className="absolute top-7 left-96 lg:top-7 lg:left-96">
             <CiSearch />
           </Button>
           <input
@@ -82,7 +82,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ onToggleSidebar, isSidebarOpen 
             placeholder="Search for results..."
             onChange={handleSearchChange}
             className="h-10 lg:w-80 xl:w-96 2xl:w-112 rounded-lg border 
-            py-1 text-lg pl-6 pr-12 text-sm mt-4 lg:block md:hidden"
+                       py-1 text-lg pl-6 pr-12 text-sm mt-4 lg:block md:hidden"
           />
         </div>
       </div>
