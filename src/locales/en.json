@@ -6,5 +6,8 @@
     "reports": "Reports",
     "feedback": "Feedback",
     "integration": "Integration",
-    "inventory": "Inventory"
+    "inventory": "Inventory",
+    "ru": "Russian",
+    "kz": "Kazakh",
+    "en": "English"
 }

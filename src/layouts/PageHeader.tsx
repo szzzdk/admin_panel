@@ -1,44 +1,29 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "./index.module.scss";
 import { CiSearch } from "react-icons/ci";
 import Button from "../components/Button";
-import { useTranslation, initReactI18next } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { LiaToothSolid } from "react-icons/lia";
 import { FaBars } from "react-icons/fa";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { IoMoonOutline } from "react-icons/io5";
 import { FaRegMessage } from "react-icons/fa6";
-import i18n from "i18next";
-import translationRU from "../locales/ru.json";
-import translationKZ from "../locales/kz.json";
-import translationEN from "../locales/en.json";
+import { useWindowSize } from "react-use";
+import Profile from "../assets/profile.jpeg";
 import { motion } from "framer-motion";
-import Profile from "../assets/profile.jpeg"
 
 interface PageHeaderProps {
   onToggleSidebar: () => void;
   isSidebarOpen: boolean;
 }
 
-i18n.use(initReactI18next).init({
-  resources: {
-    Английский: { translation: translationEN },
-    Казахский: { translation: translationKZ },
-    Русский: { translation: translationRU },
-  },
-  lng: "Русский", // Устанавливаем русский язык по умолчанию
-  fallbackLng: "Русский",
-});
-
-const PageHeader: React.FC<PageHeaderProps> = ({
-  onToggleSidebar,
-  isSidebarOpen,
-}) => {
+const PageHeader: React.FC<PageHeaderProps> = ({ onToggleSidebar, isSidebarOpen }) => {
   const { t, i18n } = useTranslation();
   const [searchQuery, setSearchQuery] = useState("");
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState("Русский");
+  const [selectedLanguage, setSelectedLanguage] = useState("ru");
   const [isNightTheme, setIsNightTheme] = useState(false);
+  const { width: screenWidth } = useWindowSize();
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
@@ -54,10 +39,6 @@ const PageHeader: React.FC<PageHeaderProps> = ({
     setIsLanguageMenuOpen(!isLanguageMenuOpen);
     console.log("Buttton language menu toggled!");
   };
-
-  useEffect(() => {
-    i18n.changeLanguage("Русский");
-  }, []);
 
   return (
     <div className="flex border relative">
@@ -92,18 +73,17 @@ const PageHeader: React.FC<PageHeaderProps> = ({
         className={`mt-9 ml-8 ${styles.icon}`}
       />
       <div className="flex gap-4 justify-center mt-1 mb-5 ml-8">
-        <div className="flex flex-grow relative">
+        <div className="flex relative">
+          <Button className="absolute top-7 right-3">
+            <CiSearch />
+          </Button>
           <input
             type="search"
             placeholder="Search for results..."
             onChange={handleSearchChange}
-            className="rounded-lg border border-secondary-border
-                       shadow-inner shadow-secondary py-1 text-lg
-                       pl-6 pr-12 text-sm h-10 w-96 mt-4"
+            className="h-10 xs:w-20 sm:w-36 md:w-60 lg:w-80 xl:w-96 2xl:w-112 rounded-lg border 
+                       py-1 text-lg pl-6 pr-12 text-sm mt-4 "
           />
-          <Button className="absolute right-0 top-0 my-7">
-            <CiSearch />
-          </Button>
         </div>
       </div>
       <div>
@@ -114,19 +94,19 @@ const PageHeader: React.FC<PageHeaderProps> = ({
                    shadow-blue-500/40 hover:shadow-indigo-500/40
                      absolute top-5 right-72 "
         >
-          {selectedLanguage}
+          {t(selectedLanguage)}
         </button>
         {isLanguageMenuOpen && (
           <div className={styles.languageMenuContainer}>
             <div className={styles.diamond}></div>
-            <button onClick={() => handleLanguageChange("Русский")}>
-              Русский
+            <button onClick={() => handleLanguageChange("ru")}>
+              {t("ru")}
             </button>
-            <button onClick={() => handleLanguageChange("Казахский")}>
-              Казахский
+            <button onClick={() => handleLanguageChange("kz")}>
+              {t("kz")}
             </button>
-            <button onClick={() => handleLanguageChange("Английский")}>
-              Английский
+            <button onClick={() => handleLanguageChange("en")}>
+              {t("en")}
             </button>
           </div>
         )}
@@ -137,10 +117,14 @@ const PageHeader: React.FC<PageHeaderProps> = ({
       <IoIosNotificationsOutline
         className={`absolute top-7 right-56 h-7 w-7 ${styles.icon}`}
       />
-      <FaRegMessage 
+      <FaRegMessage
         className={`absolute top-8 right-48 h-5 w-5 ${styles.icon}`}
       />
-      <img src={Profile} alt="profile" className="h-8 w-8 absolute top-7 right-36" />
+      <img
+        src={Profile}
+        alt="profile"
+        className="h-8 w-8 absolute top-7 right-36"
+      />
       <div className="flex flex-col absolute top-6 right-6">
         <span className="text-sm text-slate-900">Акан Серикович</span>
         <span className="text-xs text-slate-400">Стоматолог 1</span>
