@@ -10,18 +10,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "chart.js": "^4.4.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "framer-motion": "^11.0.3",
     "i18next": "^23.7.20",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^14.0.1",
     "react-icons": "^5.0.1",
     "react-router-dom": "^6.21.3",
     "react-use": "^17.5.0",
     "tailwind-merge": "^2.2.1",
-    "wind-swept-styles": "github:unknow9error/widn-swept-styles#main"
+    "wind-swept-styles": "github:unknow9error/wind-swept-styles#main"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

@@ -1,11 +1,11 @@
-import { BrowserRouter as Router } from "react-router-dom";
-import { useState } from "react";
-import "./App.css";
+import clsx from "clsx";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import "./App.css";
+import Home from "./layouts/Home";
 import PageHeader from "./layouts/PageHeader";
 import Sidebar from "./layouts/Sidebar";
-import Main from "./layouts/Main";
-import clsx from "clsx";
 
 export default function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -36,7 +36,7 @@ export default function App() {
           >
             <Sidebar isSidebarOpen={isSidebarOpen} />
           </motion.div>
-          <Main />
+          <Home />
         </div>
         
       </div>

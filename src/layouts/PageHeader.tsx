@@ -17,7 +17,7 @@ interface PageHeaderProps {
   isSidebarOpen: boolean;
 }
 
-const PageHeader: React.FC<PageHeaderProps> = ({ onToggleSidebar, isSidebarOpen }) => {
+const PageHeader: React.FC<PageHeaderProps> = ({ onToggleSidebar, isSidebarOpen}) => {
   const { t, i18n } = useTranslation();
   const [searchQuery, setSearchQuery] = useState("");
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
@@ -74,15 +74,15 @@ const PageHeader: React.FC<PageHeaderProps> = ({ onToggleSidebar, isSidebarOpen 
       />
       <div className="flex gap-4 justify-center mt-1 mb-5 ml-8">
         <div className="flex relative">
-          <Button className="absolute top-7 left-96 lg:top-7 lg:left-96">
+          <Button className="text-myCustomColor lg:absolute lg:top-0 lg:right-0 my-7 right-0 md:h-5 md:w-5 md:top-4 md:right-20">
             <CiSearch />
           </Button>
           <input
             type="search"
             placeholder="Search for results..."
             onChange={handleSearchChange}
-            className="h-10 lg:w-80 xl:w-96 2xl:w-112 rounded-lg border 
-                       py-1 text-lg pl-6 pr-12 text-sm mt-4 lg:block md:hidden"
+            className="h-10 w-full sm:w-56 md:w-64 lg:w-80 xl:w-96 2xl:w-112 rounded-lg border 
+            py-1 text-lg pl-6 pr-12 text-sm mt-4 lg:block md:hidden"
           />
         </div>
       </div>
