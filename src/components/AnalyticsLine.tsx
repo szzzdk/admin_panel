@@ -1,13 +1,18 @@
+import { Line, LineChart } from 'recharts';
 
-import { LineChart, Line } from 'recharts';
-import {data} from '../data';
 
-const AnalyticsLine = () => {
-  return (
-    <LineChart width={400} height={400} data={data}>
-      <Line type="monotone" dataKey="tp" stroke="#8884d8" />
-    </LineChart>
-  );
+interface AnalyticsLineProps {
+    data: {totalPatients?: number }[] | {totalIncome?: number}[],
+    dataKey: string
+}
+
+const AnalyticsLine: React.FC<AnalyticsLineProps> = ({ data, dataKey }) => {
+    return (
+        <div>
+            <LineChart width={200} height={100} data={data}>
+                <Line type="monotone" dataKey={dataKey} stroke="#8884d8" />
+            </LineChart>
+        </div>
+    );
 };
-
 export default AnalyticsLine;

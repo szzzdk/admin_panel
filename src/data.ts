@@ -1,12 +1,41 @@
 export const data = {
-  totalAnalytics:  [
-    {
-      "title": "Total Patients",
-      "sum": "44000",
-      "arrow": "",
-      "interval": "",
-      "graph": ""
-    }
-  ]
-    
-}
+    currentWeek: 4,
+    totalPatientsTotal: 343433,
+    totalPatientsCurrWeek: [
+        { weekDay: 1, totalPatients: 10 },
+        { weekDay: 2, totalPatients: 10 },
+        { weekDay: 3, totalPatients: 0 },
+        { weekDay: 4, totalPatients: 20 },
+        { weekDay: 5, totalPatients: 0 },
+        { weekDay: 6, totalPatients: 30 },
+        { weekDay: 7, totalPatients: 20 },
+    ],
+    totalPatientsPrevWeek: [
+        { weekDay: 1, totalPatients: 10 },
+        { weekDay: 2, totalPatients: 10 },
+        { weekDay: 3, totalPatients: 0 },
+        { weekDay: 4, totalPatients: 20 },
+        { weekDay: 5, totalPatients: 0 },
+        { weekDay: 6, totalPatients: 0 },
+        { weekDay: 7, totalPatients: 0 },
+    ],
+    totalIncomeTotal: 277727,
+    totalIncomeCurrWeek: [
+        { weekDay: 1, totalIncome: 10 },
+        { weekDay: 2, totalIncome: 20 },
+        { weekDay: 3, totalIncome: 30 },
+        { weekDay: 4, totalIncome: 0 },
+        { weekDay: 5, totalIncome: 0 },
+        { weekDay: 6, totalIncome: 0 },
+        { weekDay: 7, totalIncome: 70 },
+    ],
+    totalIncomePrevWeek: [
+        { weekDay: 1, totalIncome: 10 },
+        { weekDay: 2, totalIncome: 20 },
+        { weekDay: 3, totalIncome: 30 },
+        { weekDay: 4, totalIncome: 40 },
+        { weekDay: 5, totalIncome: 10 },
+        { weekDay: 6, totalIncome: 20 },
+        { weekDay: 7, totalIncome: 10 },
+    ],
+};
