@@ -18,7 +18,7 @@ export default function App() {
   return (
     <Router>
       <div className="flex flex-col">
-        <div className="flex flex-col">
+        <div className="flex flex-col w-full">
           <div
             className={clsx("content", {
               "with-sidebar": isSidebarOpen,
@@ -36,7 +36,10 @@ export default function App() {
           >
             <Sidebar isSidebarOpen={isSidebarOpen} />
           </motion.div>
-          <Home />
+          <div className="w-full bg-gray-100">
+            <Home />
+          </div>
+          
         </div>
         
       </div>
