@@ -1,8 +1,8 @@
-import AnalyticsBarChart from '../components/BarChart';
-import AnalyticsLine from '../components/AnalyticsLine';
-import { data } from '../data';
-import { FaArrowAltCircleUp, FaArrowAltCircleDown } from 'react-icons/fa';
 import { FC, PropsWithChildren } from 'react';
+import { FaArrowAltCircleDown, FaArrowAltCircleUp } from 'react-icons/fa';
+import AnalyticsLine from '../components/AnalyticsLine';
+import AnalyticsBarChart from '../components/BarChart';
+import { data } from '../data';
 
 interface ITest {
     currWeek: number;
@@ -39,15 +39,14 @@ const Test: FC<PropsWithChildren<ITest>> = ({
     );
 };
 
-type Test2<Key extends string = string> = (
-    arr: { [key in Key]: number }[],
-    key: Key
-) => number;
 
 const Home: React.FC = () => {
-    function calculateTotal<Key>(arr: { [key in Key]: number }, key) {
-        return arr.reduce((total, item) => {
-            return total + item[key as keyof typeof item];
+    function calculateTotal<Key extends string = string>( // функция принимает тип Key, который должен быть строкой или подтипом строки
+        arr: { [key in Key]: number }[],
+        key: Key
+    ) {
+        return arr.reduce((total, item) => { // item -объекты, key -ключи
+            return total + item[key];
         }, 0);
     }
 
