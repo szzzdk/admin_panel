@@ -3,6 +3,7 @@ import { FaArrowAltCircleDown, FaArrowAltCircleUp } from 'react-icons/fa';
 import { StatisticLine } from '../components/StatisticLine';
 import { AnalyticsBarChart } from '../components/BarChart';
 import { data } from '../data';
+import { ServiceStatistic } from '../components/ServiceStatistic';
 
 interface ITest {
     currWeek: number;
@@ -23,8 +24,8 @@ const Test: FC<PropsWithChildren<ITest>> = ({
     isSidebarOpen,
 }) => {
     return (
-        <div className={`flex items-center justify-center border-gray-300 bg-white rounded-md ${isSidebarOpen ? 'h-32 w-80' : 'h-32 w-96'}`} >
-            <div className='pr-2'>
+        <div className={`flex items-center justify-center border-gray-300 bg-white rounded-md ${isSidebarOpen ? 'h-32 w-96' : 'h-32 w-96'}`} >
+            <div >
                 <h4>{title}</h4>
                 <span className='text-2xl font-bold'>{overall}</span>
                 <div className="flex items-center">
@@ -95,6 +96,7 @@ export const Home: FC<{ isSidebarOpen: boolean }> = ({ isSidebarOpen }) => {
         'totalExpenses'
     );
 
+
     return (
         <div>
             <div className='grid grid-cols-4 mx-8 mt-16'>
@@ -155,6 +157,9 @@ export const Home: FC<{ isSidebarOpen: boolean }> = ({ isSidebarOpen }) => {
                     </Test>
                 </div>
             </div>
+            <ServiceStatistic 
+                data={data.services}
+            />
         </div>
     );
 };

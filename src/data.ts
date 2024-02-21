@@ -76,5 +76,13 @@ export const data = {
         { weekDay: 6, totalExpenses: 10 },
         { weekDay: 7, totalExpenses: 70 },
     ],
-
+    services: [
+        { service: 'Ортопедия', totalService: 300 },
+        { service: 'Протезирование', totalService: 200 },
+        { service: 'Хирургия', totalService: 500 },
+        { service: 'Ортодонтия', totalService: 700} ,
+        { service: 'Терапия', totalService: 299 },
+        { service: 'Диагностика зубов', totalService: 900 },
+        { service: 'Проф гигиена', totalService: 300}
+    ]
 };
