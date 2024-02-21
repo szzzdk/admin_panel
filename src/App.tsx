@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import "./App.css";
-import Home from "./layouts/Home";
+import { Home } from "./layouts/Home";
 import PageHeader from "./layouts/PageHeader";
 import Sidebar from "./layouts/Sidebar";
 
@@ -37,11 +37,11 @@ export default function App() {
             <Sidebar isSidebarOpen={isSidebarOpen} />
           </motion.div>
           <div className="w-full bg-gray-100">
-            <Home />
+            <Home 
+              isSidebarOpen={isSidebarOpen}
+            />
           </div>
-          
         </div>
-        
       </div>
     </Router>
   );

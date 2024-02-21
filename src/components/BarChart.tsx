@@ -1,11 +1,11 @@
 import { BarChart, Bar } from 'recharts'
 
 interface AnalyticsBarChartProps {
-    data: { totalPatinets?: number}[] | { totalIncome?: number}[],
+    data: { totalIncome?: number}[] | { totalExpenses?: number}[],
     dataKey: string
 }
 
-const AnalyticsBarCharts: React.FC<AnalyticsBarChartProps> = ({ data, dataKey}) => {
+export const AnalyticsBarChart: React.FC<AnalyticsBarChartProps> = ({ data, dataKey}) => {
   return (
     <div>
         <BarChart width={70} height={80} data={data}>
@@ -14,5 +14,3 @@ const AnalyticsBarCharts: React.FC<AnalyticsBarChartProps> = ({ data, dataKey}) 
     </div>
   )
 }
-
-export default AnalyticsBarCharts;

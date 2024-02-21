@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren } from 'react';
 import { FaArrowAltCircleDown, FaArrowAltCircleUp } from 'react-icons/fa';
-import AnalyticsLine from '../components/AnalyticsLine';
-import AnalyticsBarChart from '../components/BarChart';
+import { StatisticLine } from '../components/StatisticLine';
+import { AnalyticsBarChart } from '../components/BarChart';
 import { data } from '../data';
 
 interface ITest {
@@ -9,6 +9,8 @@ interface ITest {
     current: number;
     prev: number;
     title: string;
+    overall: number;
+    isSidebarOpen: boolean;
 }
 
 const Test: FC<PropsWithChildren<ITest>> = ({
@@ -17,20 +19,23 @@ const Test: FC<PropsWithChildren<ITest>> = ({
     currWeek,
     children,
     title,
+    overall,
+    isSidebarOpen,
 }) => {
     return (
-        <div className="flex items-center justify-center border-gray-300 bg-white rounded-md h-32 w-64">
-            <div>
+        <div className={`flex items-center justify-center border-gray-300 bg-white rounded-md ${isSidebarOpen ? 'h-32 w-80' : 'h-32 w-96'}`} >
+            <div className='pr-2'>
                 <h4>{title}</h4>
-                <span>{data.totalPatientsTotal}</span>
-                <div className="flex">
+                <span className='text-2xl font-bold'>{overall}</span>
+                <div className="flex items-center">
                     {current > prev ? (
-                        <FaArrowAltCircleUp />
+                        <FaArrowAltCircleUp className='text-myCustomColor text-xs'/>
                     ) : current < prev ? (
-                        <FaArrowAltCircleDown />
+                        <FaArrowAltCircleDown className='text-myCustomColor text-xs'/>
                     ) : null}
-                    <span>
-                        {((currWeek / current) * 100).toFixed(2)}% Last week
+                    
+                    <span className='text-sm'>
+                        {((currWeek / current) * 100).toFixed(2)}% за последнюю неделю
                     </span>
                 </div>
             </div>
@@ -39,10 +44,9 @@ const Test: FC<PropsWithChildren<ITest>> = ({
     );
 };
 
-
-const Home: React.FC = () => {
+export const Home: FC<{ isSidebarOpen: boolean }> = ({ isSidebarOpen }) => {
     function calculateTotal<Key extends string = string>( // функция принимает тип Key, который должен быть строкой или подтипом строки
-        arr: { [key in Key]: number }[],
+        arr: { [key in Key]: number }[], // каждый ключ в объекте должен быть типа Key (строка или подтип строки), а каждое значение должно быть числом.
         key: Key
     ) {
         return arr.reduce((total, item) => { // item -объекты, key -ключи
@@ -57,6 +61,7 @@ const Home: React.FC = () => {
     // };
 
     const currWeek = data.currentWeek;
+
     const totalPatientsCurrWeek = calculateTotal(
         data.totalPatientsCurrWeek,
         'totalPatients'
@@ -73,19 +78,37 @@ const Home: React.FC = () => {
         data.totalIncomePrevWeek,
         'totalIncome'
     );
+    const totalProceduresCurrWeek = calculateTotal(
+        data.totalProceduresCurrWeek,
+        'totalProcedures'
+    );
+    const totalProceduresPrevWeek = calculateTotal(
+        data.totalProceduresPrevWeek,
+        'totalProcedures'
+    );
+    const totalExpensesCurrWeek = calculateTotal(
+        data.totalExpensesCurrWeek,
+        'totalExpenses'
+    );
+    const totalExpensesPrevWeek = calculateTotal(
+        data.totalExpensesPrevWeek,
+        'totalExpenses'
+    );
 
     return (
         <div>
-            <div className="grid grid-cols-4 mx-16 mt-16">
+            <div className='grid grid-cols-4 mx-8 mt-16'>
                 <span>Главная</span>
-                <div className="flex items-center col-span-5 gap-7">
+                <div className="flex items-center col-span-5 gap-4">
                     <Test
                         current={totalPatientsCurrWeek}
                         prev={totalPatientsPrevWeek}
                         currWeek={currWeek}
-                        title="Total Patients"
+                        overall={data.overallPatients}
+                        title="Количество пациентов"
+                        isSidebarOpen={isSidebarOpen}
                     >
-                        <AnalyticsLine
+                        <StatisticLine
                             data={data.totalPatientsCurrWeek}
                             dataKey="totalPatients"
                         />
@@ -94,7 +117,10 @@ const Home: React.FC = () => {
                         current={totalIncomeCurrWeek}
                         prev={totalIncomePrevWeek}
                         currWeek={currWeek}
-                        title="Total Income"
+                        overall={data.overallIncome}
+                        isSidebarOpen={isSidebarOpen}
+                        title="Общий доход"
+                        
                     >
                         <AnalyticsBarChart
                             data={data.totalIncomeCurrWeek}
@@ -102,25 +128,29 @@ const Home: React.FC = () => {
                         />
                     </Test>
                     <Test
-                        current={totalPatientsCurrWeek}
-                        prev={totalPatientsPrevWeek}
+                        current={totalProceduresCurrWeek}
+                        prev={totalProceduresPrevWeek}
                         currWeek={currWeek}
-                        title="Total Patients"
+                        overall={data.overallProcedures}
+                        isSidebarOpen={isSidebarOpen}
+                        title="Количество процедур"
                     >
-                        <AnalyticsLine
-                            data={data.totalPatientsCurrWeek}
-                            dataKey="totalPatients"
+                        <StatisticLine
+                            data={data.totalProceduresCurrWeek}
+                            dataKey="totalProcedures"
                         />
                     </Test>
                     <Test
-                        current={totalIncomeCurrWeek}
-                        prev={totalIncomePrevWeek}
+                        current={totalExpensesCurrWeek}
+                        prev={totalExpensesPrevWeek}
                         currWeek={currWeek}
-                        title="Total Income"
+                        overall={data.overallExpenses}
+                        isSidebarOpen={isSidebarOpen    }
+                        title="Количество расходов"
                     >
                         <AnalyticsBarChart
-                            data={data.totalIncomeCurrWeek}
-                            dataKey="totalIncome"
+                            data={data.totalExpensesCurrWeek}
+                            dataKey="totalExpenses"
                         />
                     </Test>
                 </div>
@@ -128,5 +158,3 @@ const Home: React.FC = () => {
         </div>
     );
 };
-
-export default Home;

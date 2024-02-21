@@ -1,12 +1,12 @@
 import { Line, LineChart } from 'recharts';
 
 
-interface AnalyticsLineProps {
-    data: {totalPatients?: number }[] | {totalIncome?: number}[],
+interface StatisticLineProps {
+    data: {totalPatients?: number }[] | {totalProcedures?: number}[] ,
     dataKey: string
 }
 
-const AnalyticsLine: React.FC<AnalyticsLineProps> = ({ data, dataKey }) => {
+export const StatisticLine: React.FC<StatisticLineProps> = ({ data, dataKey }) => {
     return (
         <div>
             <LineChart width={70} height={80} data={data}>
@@ -15,4 +15,3 @@ const AnalyticsLine: React.FC<AnalyticsLineProps> = ({ data, dataKey }) => {
         </div>
     );
 };
-export default AnalyticsLine;
