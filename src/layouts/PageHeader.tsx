@@ -22,8 +22,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ onToggleSidebar, isSidebarOpen}
   const [searchQuery, setSearchQuery] = useState("");
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState("ru");
-  const [isNightTheme, setIsNightTheme] = useState(false);
-  const { width: screenWidth } = useWindowSize();
+  // const [isNightTheme, setIsNightTheme] = useState(false);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
@@ -41,8 +40,8 @@ const PageHeader: React.FC<PageHeaderProps> = ({ onToggleSidebar, isSidebarOpen}
   };
 
   return (
-    <div className="flex border relative">
-      <div className="flex items-center border border-b-0 border-l-0 border-t-0">
+    <div className="flex relative border-b">
+      <div className="flex items-center border-r">
         <a href="/">
           <div className="flex items-center">
             {isSidebarOpen ? (

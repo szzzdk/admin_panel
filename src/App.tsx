@@ -33,6 +33,7 @@ export default function App() {
         <div className="flex">
           <motion.div
             transition={{ duration: 0.3 }}
+            className="border-r"
           >
             <Sidebar isSidebarOpen={isSidebarOpen} />
           </motion.div>

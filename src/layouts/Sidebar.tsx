@@ -62,10 +62,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen }) => {
     <motion.div
       initial={false}
       transition={{ duration: 0.3 }}
-      className="border border-t-0"
     >
-      <section className="h-screen">
-        <div className="pt-5 border border-r-0 border-b-0 border-t-0">
+      <section className="static">
+        <div className="pt-5 border-l">
           {routes.map((route) => (
             <NavLink to={route.path} key={route.name}>
               {isSidebarOpen ? (

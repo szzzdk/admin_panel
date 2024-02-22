@@ -24,19 +24,24 @@ const Test: FC<PropsWithChildren<ITest>> = ({
     isSidebarOpen,
 }) => {
     return (
-        <div className={`flex items-center justify-center border-gray-300 bg-white rounded-md ${isSidebarOpen ? 'h-32 w-96' : 'h-32 w-96'}`} >
-            <div >
+        <div
+            className={`flex items-center justify-center border-gray-300 bg-white rounded-md ${
+                isSidebarOpen ? 'h-32 w-96' : 'h-32 w-96'
+            }`}
+        >
+            <div>
                 <h4>{title}</h4>
-                <span className='text-2xl font-bold'>{overall}</span>
+                <span className="text-2xl font-bold">{overall}</span>
                 <div className="flex items-center">
                     {current > prev ? (
-                        <FaArrowAltCircleUp className='text-myCustomColor text-xs'/>
+                        <FaArrowAltCircleUp className="text-myCustomColor text-xs" />
                     ) : current < prev ? (
-                        <FaArrowAltCircleDown className='text-myCustomColor text-xs'/>
+                        <FaArrowAltCircleDown className="text-myCustomColor text-xs" />
                     ) : null}
-                    
-                    <span className='text-sm'>
-                        {((currWeek / current) * 100).toFixed(2)}% за последнюю неделю
+
+                    <span className="text-sm">
+                        {((currWeek / current) * 100).toFixed(2)}% за последнюю
+                        неделю
                     </span>
                 </div>
             </div>
@@ -50,7 +55,8 @@ export const Home: FC<{ isSidebarOpen: boolean }> = ({ isSidebarOpen }) => {
         arr: { [key in Key]: number }[], // каждый ключ в объекте должен быть типа Key (строка или подтип строки), а каждое значение должно быть числом.
         key: Key
     ) {
-        return arr.reduce((total, item) => { // item -объекты, key -ключи
+        return arr.reduce((total, item) => {
+            // item -объекты, key -ключи
             return total + item[key];
         }, 0);
     }
@@ -96,11 +102,10 @@ export const Home: FC<{ isSidebarOpen: boolean }> = ({ isSidebarOpen }) => {
         'totalExpenses'
     );
 
-
     return (
-        <div>
-            <div className='grid grid-cols-4 mx-8 mt-16'>
-                <span>Главная</span>
+        <div className="mx-8 my-8">
+            <span>Главная</span>
+            <div className="grid grid-cols-4">
                 <div className="flex items-center col-span-5 gap-4">
                     <Test
                         current={totalPatientsCurrWeek}
@@ -122,7 +127,6 @@ export const Home: FC<{ isSidebarOpen: boolean }> = ({ isSidebarOpen }) => {
                         overall={data.overallIncome}
                         isSidebarOpen={isSidebarOpen}
                         title="Общий доход"
-                        
                     >
                         <AnalyticsBarChart
                             data={data.totalIncomeCurrWeek}
@@ -147,7 +151,7 @@ export const Home: FC<{ isSidebarOpen: boolean }> = ({ isSidebarOpen }) => {
                         prev={totalExpensesPrevWeek}
                         currWeek={currWeek}
                         overall={data.overallExpenses}
-                        isSidebarOpen={isSidebarOpen    }
+                        isSidebarOpen={isSidebarOpen}
                         title="Количество расходов"
                     >
                         <AnalyticsBarChart
@@ -157,7 +161,8 @@ export const Home: FC<{ isSidebarOpen: boolean }> = ({ isSidebarOpen }) => {
                     </Test>
                 </div>
             </div>
-            <ServiceStatistic 
+            <ServiceStatistic
+                isSidebarOpen={isSidebarOpen}
                 data={data.services}
             />
         </div>
