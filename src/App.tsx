@@ -17,10 +17,10 @@ export default function App() {
 
   return (
     <Router>
-      <div className="flex flex-col">
-        <div className="flex flex-col w-full">
+      <div className="flex flex-col h-screen">
+        <div className="flex flex-col w-full h-1/7">
           <div
-            className={clsx("content", {
+            className={clsx("content h-full", {
               "with-sidebar": isSidebarOpen,
             })}
           >
@@ -30,14 +30,14 @@ export default function App() {
             />
           </div>
         </div>
-        <div className="flex">
+        <div className="flex h-6/7">
           <motion.div
             transition={{ duration: 0.3 }}
             className="border-r"
           >
             <Sidebar isSidebarOpen={isSidebarOpen} />
           </motion.div>
-          <div className="w-full bg-gray-100">
+          <div className="w-full bg-gray-100 overflow-auto">
             <Home 
               isSidebarOpen={isSidebarOpen}
             />

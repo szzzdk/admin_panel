@@ -40,8 +40,8 @@ const PageHeader: React.FC<PageHeaderProps> = ({ onToggleSidebar, isSidebarOpen}
   };
 
   return (
-    <div className="flex relative border-b">
-      <div className="flex items-center border-r">
+    <div className="flex relative border-b h-full">
+      <div className="flex items-center border-r h-full">
         <a href="/">
           <div className="flex items-center">
             {isSidebarOpen ? (

@@ -73,30 +73,37 @@ export const Home: FC<{ isSidebarOpen: boolean }> = ({ isSidebarOpen }) => {
         data.totalPatientsCurrWeek,
         'totalPatients'
     );
+
     const totalPatientsPrevWeek = calculateTotal(
         data.totalPatientsPrevWeek,
         'totalPatients'
     );
+
     const totalIncomeCurrWeek = calculateTotal(
         data.totalIncomeCurrWeek,
         'totalIncome'
     );
+
     const totalIncomePrevWeek = calculateTotal(
         data.totalIncomePrevWeek,
         'totalIncome'
     );
+
     const totalProceduresCurrWeek = calculateTotal(
         data.totalProceduresCurrWeek,
         'totalProcedures'
     );
+
     const totalProceduresPrevWeek = calculateTotal(
         data.totalProceduresPrevWeek,
         'totalProcedures'
     );
+
     const totalExpensesCurrWeek = calculateTotal(
         data.totalExpensesCurrWeek,
         'totalExpenses'
     );
+
     const totalExpensesPrevWeek = calculateTotal(
         data.totalExpensesPrevWeek,
         'totalExpenses'
@@ -106,7 +113,7 @@ export const Home: FC<{ isSidebarOpen: boolean }> = ({ isSidebarOpen }) => {
         <div className="mx-8 my-8">
             <span>Главная</span>
             <div className="grid grid-cols-4">
-                <div className="flex items-center col-span-5 gap-4">
+                <div className="flex items-center col-span-5 gap-4 mt-3">
                     <Test
                         current={totalPatientsCurrWeek}
                         prev={totalPatientsPrevWeek}
@@ -163,7 +170,8 @@ export const Home: FC<{ isSidebarOpen: boolean }> = ({ isSidebarOpen }) => {
             </div>
             <ServiceStatistic
                 isSidebarOpen={isSidebarOpen}
-                data={data.services}
+                data={data}
+                currWeek={currWeek}
             />
         </div>
     );

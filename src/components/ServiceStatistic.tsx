@@ -4,31 +4,71 @@ import {
     XAxis,
     YAxis,
     Tooltip,
-    Legend,
     Line,
-    Label,
-    LabelList,
     ResponsiveContainer,
     BarChart,
-    Bar
+    Bar,
 } from 'recharts';
+import { FaCheck } from "react-icons/fa";
+import { data } from '../data';
 
 interface ServiceStatisticProps {
-    data: { service: string; totalService: number }[];
+    data: typeof data;
+    currWeek: number;
     isSidebarOpen: boolean;
 }
 
-export const ServiceStatistic: React.FC<ServiceStatisticProps> = ({
-    data,
+interface RoundedTopBarProps {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+    fill: string;
+}
+
+const RoundedTopBar: React.FC<RoundedTopBarProps> = ({
+    x,
+    y,
+    width,
+    height,
+    fill,
 }) => {
+    // Высота скругления верхней части столбца
+    const radius = 10;
+
+    // Путь SVG для столбца с верхней частью скругленной
+    const path = `M${x},${y + radius} 
+                  A${radius},${radius},0,0,1,${x + width},${y + radius}
+                  L${x + width},${y + height}
+                  L${x},${y + height}
+                  Z`;
+
+    return <path d={path} fill={fill} />;
+};
+
+export const ServiceStatistic: React.FC<ServiceStatisticProps> = ({ data, currWeek }) => {
+    function calculateTotal<Key extends string = string>(
+        arr: {[key in Key]: number}[],
+        key: Key
+    ) {
+        return arr.reduce((total, item) => {
+            return total + item[key]
+        }, 0);
+    } 
+
+    const totalServices = calculateTotal(
+        data.services,
+        'totalService'
+    )
+
     return (
-        <div className="mt-8 grid grid-cols-2">
-            <div className="bg-white rounded-md">
-                <span className="top-20 z-10 left-7">Статистика услуг</span>
-                <hr className="top-24 z-10" />
-                <ResponsiveContainer width="100%" height={600}>
+        <div className="mt-8 flex">
+            <div className="bg-white rounded-md w-9/12 pt-5">
+                <p className='pl-6'>Статистика услуг</p>
+                <hr />
+                <ResponsiveContainer height={400} >
                     <LineChart
-                        data={data}
+                        data={data.services}
                         margin={{ top: 50, right: 50, bottom: 20 }}
                     >
                         <CartesianGrid
@@ -56,22 +96,44 @@ export const ServiceStatistic: React.FC<ServiceStatisticProps> = ({
                     </LineChart>
                 </ResponsiveContainer>
             </div>
-            <div>
-                <img src="" alt="" />
-                <ResponsiveContainer width="100%" height={600}>
+            <div className="w-3/12 bg-white rounded-md ml-9 pt-5">
+                <p className='pl-7'>Статус услуг</p>
+                <hr />
+                <ResponsiveContainer height={300} className="pl-11">
                     <BarChart
-                        data={data}
+                        data={data.services}
                         margin={{ top: 50, right: 50, bottom: 20 }}
                     >
                         <Bar
-                            type="monotone"
+                            barSize={20}
                             dataKey="totalService"
                             strokeWidth={2}
-                            stroke="#8884d8"
-                            //fill={`#${Math.floor(Math.random() * 16777215).toString(16)}`}
+                            fill={`#${Math.floor(
+                                Math.random() * 16777215
+                            ).toString(16)}`}
+                            shape={(props: unknown) => (
+                                <RoundedTopBar
+                                    x={(props as RoundedTopBarProps).x}
+                                    y={(props as RoundedTopBarProps).y}
+                                    width={(props as RoundedTopBarProps).width}
+                                    height={
+                                        (props as RoundedTopBarProps).height
+                                    }
+                                    fill={(props as RoundedTopBarProps).fill}
+                                />
+                            )}
                         />
                     </BarChart>
                 </ResponsiveContainer>
+                <div className='flex'>
+                    <FaCheck />
+                    <div className='flex'>
+                        <p>Выполненные услуги</p>
+                        {((currWeek / totalServices) * 100).toFixed(2)} <span>увеличилось</span>
+                    </div>
+                    
+
+                </div>
             </div>
         </div>
     );
