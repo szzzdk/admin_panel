@@ -76,8 +76,8 @@ export const data = {
         { weekDay: 6, totalExpenses: 10 },
         { weekDay: 7, totalExpenses: 70 },
     ],
-    overallPerformedServices: 8343883,
-    overallCancelledServices: 3893493,
+    overallPerformedServices: 83433,
+    overallCancelledServices: 38933,
     services: [
         { service: 'Ортопедия', totalPerformedServices: 300, totalCancelledServices: 150 },
         { service: 'Протезирование', totalPerformedServices: 200, totalCancelledServices: 150 },

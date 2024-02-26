@@ -113,9 +113,7 @@ export const ServiceStatistic: React.FC<ServiceStatisticProps> = ({ data, currWe
                             barSize={20}
                             dataKey="totalPerformedServices"
                             strokeWidth={2}
-                            fill={`#${Math.floor(
-                                Math.random() * 16777215
-                            ).toString(16)}`}
+                            fill="rgb(252 165 165 / var(--tw-bg-opacity))"
                             shape={(props: unknown) => (
                                 <RoundedTopBar
                                     x={(props as RoundedTopBarProps).x}
@@ -132,7 +130,7 @@ export const ServiceStatistic: React.FC<ServiceStatisticProps> = ({ data, currWe
                             barSize={20}
                             dataKey="totalCancelledServices"
                             strokeWidth={2}
-                            fill="bg-blue-300 bg-opacity-75)"
+                            fill="#7dd3fc"
                             shape={(props: unknown) => (
                                 <RoundedTopBar
                                     x={(props as RoundedTopBarProps).x}
@@ -147,27 +145,31 @@ export const ServiceStatistic: React.FC<ServiceStatisticProps> = ({ data, currWe
                         />
                     </BarChart>
                 </ResponsiveContainer>
-                <div className='flex items-center justify-between mb-4'>
-                    <div className='bg-sky-300 p-3'>
+                <div className='flex items-center justify-around mb-4'>
+                    <div className='bg-sky-300 p-3 rounded-md'>
                         <FaCheck/>
                     </div>
                     <div className='flex flex-col'>
-                        <p>Выполненные услуги</p>
-                        {((currWeek / totalPerformedServices) * 100).toFixed(2)}% увеличилось
+                        <p className='font-bold'>Выполненные услуги</p>
+                        <div className='text-sm'>
+                            {((currWeek / totalPerformedServices) * 100).toFixed(2)}<span>% увеличилось</span>
+                        </div>
                     </div>
-                    <div>
+                    <div className='font-bold'>
                         {data.overallPerformedServices}
                     </div>
                 </div>
-                <div className='flex items-center justify-between'>
-                    <div className='bg-red-300 p-3'>
+                <div className='flex items-center justify-around'>
+                    <div className='bg-red-300 p-3 rounded-md'>
                         <FaTimes />
                     </div>
                     <div className='flex flex-col'>
-                        <p>Отмененные записи</p>
-                        {((currWeek / totalCancelledServices) * 100).toFixed(2)}% увеличилось
+                        <p className='font-bold'>Отмененные записи</p>
+                        <div className='text-sm'>
+                            {((currWeek / totalCancelledServices) * 100).toFixed(2)}% увеличилось
+                        </div>
                     </div>
-                    <div>
+                    <div className='font-bold'>
                         {data.overallCancelledServices}
                     </div>
                 </div>
