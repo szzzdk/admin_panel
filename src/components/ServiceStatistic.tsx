@@ -9,7 +9,7 @@ import {
     BarChart,
     Bar,
 } from 'recharts';
-import { FaCheck } from "react-icons/fa";
+import { FaCheck, FaTimes } from "react-icons/fa";
 import { data } from '../data';
 
 interface ServiceStatisticProps {
@@ -56,9 +56,14 @@ export const ServiceStatistic: React.FC<ServiceStatisticProps> = ({ data, currWe
         }, 0);
     } 
 
-    const totalServices = calculateTotal(
+    const totalPerformedServices = calculateTotal(
         data.services,
-        'totalService'
+        'totalPerformedServices'
+    )
+
+    const totalCancelledServices = calculateTotal(
+        data.services,
+        'totalCancelledServices'
     )
 
     return (
@@ -87,7 +92,7 @@ export const ServiceStatistic: React.FC<ServiceStatisticProps> = ({ data, currWe
                         <Tooltip />
                         <Line
                             type="monotone"
-                            dataKey="totalService"
+                            dataKey="totalPerformedServices"
                             strokeWidth={2}
                             stroke="#8884d8"
                             dot={false}
@@ -106,7 +111,7 @@ export const ServiceStatistic: React.FC<ServiceStatisticProps> = ({ data, currWe
                     >
                         <Bar
                             barSize={20}
-                            dataKey="totalService"
+                            dataKey="totalPerformedServices"
                             strokeWidth={2}
                             fill={`#${Math.floor(
                                 Math.random() * 16777215
@@ -123,16 +128,48 @@ export const ServiceStatistic: React.FC<ServiceStatisticProps> = ({ data, currWe
                                 />
                             )}
                         />
+                        <Bar
+                            barSize={20}
+                            dataKey="totalCancelledServices"
+                            strokeWidth={2}
+                            fill="bg-blue-300 bg-opacity-75)"
+                            shape={(props: unknown) => (
+                                <RoundedTopBar
+                                    x={(props as RoundedTopBarProps).x}
+                                    y={(props as RoundedTopBarProps).y}
+                                    width={(props as RoundedTopBarProps).width}
+                                    height={
+                                        (props as RoundedTopBarProps).height
+                                    }
+                                    fill={(props as RoundedTopBarProps).fill}
+                                />
+                            )}
+                        />
                     </BarChart>
                 </ResponsiveContainer>
-                <div className='flex'>
-                    <FaCheck />
-                    <div className='flex'>
-                        <p>Выполненные услуги</p>
-                        {((currWeek / totalServices) * 100).toFixed(2)} <span>увеличилось</span>
+                <div className='flex items-center justify-between mb-4'>
+                    <div className='bg-sky-300 p-3'>
+                        <FaCheck/>
                     </div>
-                    
-
+                    <div className='flex flex-col'>
+                        <p>Выполненные услуги</p>
+                        {((currWeek / totalPerformedServices) * 100).toFixed(2)}% увеличилось
+                    </div>
+                    <div>
+                        {data.overallPerformedServices}
+                    </div>
+                </div>
+                <div className='flex items-center justify-between'>
+                    <div className='bg-red-300 p-3'>
+                        <FaTimes />
+                    </div>
+                    <div className='flex flex-col'>
+                        <p>Отмененные записи</p>
+                        {((currWeek / totalCancelledServices) * 100).toFixed(2)}% увеличилось
+                    </div>
+                    <div>
+                        {data.overallCancelledServices}
+                    </div>
                 </div>
             </div>
         </div>

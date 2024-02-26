@@ -76,13 +76,15 @@ export const data = {
         { weekDay: 6, totalExpenses: 10 },
         { weekDay: 7, totalExpenses: 70 },
     ],
+    overallPerformedServices: 8343883,
+    overallCancelledServices: 3893493,
     services: [
-        { service: 'Ортопедия', totalService: 300 },
-        { service: 'Протезирование', totalService: 200 },
-        { service: 'Хирургия', totalService: 500 },
-        { service: 'Ортодонтия', totalService: 700} ,
-        { service: 'Терапия', totalService: 299 },
-        { service: 'Диагностика зубов', totalService: 900 },
-        { service: 'Проф гигиена', totalService: 300}
+        { service: 'Ортопедия', totalPerformedServices: 300, totalCancelledServices: 150 },
+        { service: 'Протезирование', totalPerformedServices: 200, totalCancelledServices: 150 },
+        { service: 'Хирургия', totalPerformedServices: 500, totalCancelledServices: 150 },
+        { service: 'Ортодонтия', totalPerformedServices: 700, totalCancelledServices: 70 },
+        { service: 'Терапия', totalPerformedServices: 299, totalCancelledServices: 50 },
+        { service: 'Диагностика зубов', totalPerformedServices: 900, totalCancelledServices: 40 },
+        { service: 'Проф гигиена', totalPerformedServices: 300, totalCancelledServices: 100 }
     ]
 };
